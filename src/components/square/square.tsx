@@ -1,24 +1,16 @@
-import { useState } from "react";
-import { alertTool } from "../../tools/alerts";
 import "./square.css";
 
 interface SquareProps {
-  squareNumber: string;
+  value: string;
+  onSquareClick: Function;
 }
 
-const Square: React.FC<SquareProps> = ( {squareNumber} ) => {
-
-  const [value, setValue] = useState<string | null>(null);
-
-  function handleClick() {
-    alertTool("Hiciste click! " + squareNumber);
-    setValue("X");
-  }
+const Square: React.FC<SquareProps> = ( {value, onSquareClick} ) => {
 
   return (
     <button
       className="square"
-      onClick={() => handleClick()}
+      onClick={() => onSquareClick()}
     >
       {value}
     </button>
