@@ -1,22 +1,42 @@
 import { useState } from "react";
-import Square from "./square/square";
-import { alertTool } from "../tools/alerts";
+import Square from "../square/square";
+import "./board.css";
+import { calculateWinner } from "../../tools/TicTacFunction";
 
 function Board() {
 
   const [xIsNext, setXIsNext] = useState<boolean>(true);
   const [squares, setSquares] = useState( Array(9).fill(null) );
+  const [status, setStatus] = useState<string>("Siguiente jugador: X");
 
   function handleClick(i:number) {
-    alertTool("Click! - Casilla: " + i);
+    // Comprueba si la casilla ya tiene un valor o si ya existe un ganador
+    if (squares[i] || calculateWinner(squares)) { return; }
+
+    // Crea una copia del Array que representa el tablero
     const nextSquares = squares.slice();
-    nextSquares[i] = (xIsNext) ? "X" : "O";
+
+    // Define el turno actual del jugador
+    nextSquares[i] = xIsNext ? "X" : "O";
+
+    // Actualiza el estado de a quien le toca tirar después
     setXIsNext(!xIsNext);
+
+    // Actualiza los valores del tablero
     setSquares(nextSquares);
+
+    const winner = calculateWinner(nextSquares);
+    const nextPlayer = xIsNext ? "O" : "X";
+
+    // Define si ya hubo un ganador o toca jugar otro turno
+    setStatus((winner)
+      ? "Ganador: " + winner
+      : "Siguiente jugador: " + nextPlayer);
   }
 
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
 
         {/* <Square value={squares[0]} onSquareClick={handleClick(0)}/> */}
