@@ -1,8 +1,12 @@
 import Board from "../board/board";
 
-export default function Game() {
+interface GameProps {
+  visible: boolean;
+}
+
+const Game: React.FC<GameProps> = ( {visible} ) => {
   return (
-    <div className="game">
+    <div className="game" style={{ display: (visible) ? "" : "none" }}>
       <div className="game-board">
         <Board />
       </div>
@@ -12,3 +16,5 @@ export default function Game() {
     </div>
   );
 }
+
+export default Game;
