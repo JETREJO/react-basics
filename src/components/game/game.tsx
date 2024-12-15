@@ -1,4 +1,5 @@
 import Board from "../board/board";
+import "./game.css";
 
 interface GameProps {
   visible: boolean;

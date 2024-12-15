@@ -1,3 +1,5 @@
+import "./navbar.css";
+
 interface NavbarProps {
   gameVisible: boolean;
   setGameVisible: Function;
@@ -18,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ( {setGameVisible, gameVisible, setTableVi
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       <ul>
         <li>
           <button onClick={() => handleGame()}>Tic-Tac-Toe</button>

@@ -3,8 +3,9 @@ import Game from "./components/game/game";
 import Navbar from "./components/navbar/navbar";
 import FilterableProductTable from "./components/productsTable/mainProductTable/FilterableProductTable";
 import { Product } from "./interfaces/Product";
+import "./App.css";
 
-const products: Product[] = [
+const PRODUCTS: Product[] = [
   { category: "Frutas", price: "$1", stocked: true, name: "Manzana" },
   { category: "Frutas", price: "$1", stocked: true, name: "Fruta del dragón" },
   { category: "Frutas", price: "$2", stocked: false, name: "Maracuyá" },
@@ -15,7 +16,7 @@ const products: Product[] = [
 
 const App = () => {
 
-  const [gameVisible, setGameVisible] = useState<boolean>(false);
+  const [gameVisible, setGameVisible] = useState<boolean>(true);
   const [tableVisible, setTableVisible] = useState<boolean>(true);
 
   function toggleGameVisible() {
@@ -34,8 +35,10 @@ const App = () => {
         tableVisible={tableVisible}
         setTableVisible={() => toggleTableVisible()}
       />
-      <Game visible={gameVisible} />
-      <FilterableProductTable products={products} sectionVisible={tableVisible}/>
+      <div className="content">
+        <Game visible={gameVisible} />
+        <FilterableProductTable products={PRODUCTS} sectionVisible={tableVisible}/>
+      </div>
     </div>
   );
 }

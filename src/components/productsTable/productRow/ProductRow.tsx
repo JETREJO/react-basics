@@ -5,10 +5,9 @@ interface ProductRowProps {
 }
 
 const ProductRow: React.FC<ProductRowProps> = ({ product }) => {
-  const name = product.stocked ? product.name :
-    <span style={{ color: 'red' }}>
-      {product.name}
-    </span>;
+  const name = product.stocked
+    ? product.name
+    : <span style={{color:"red"}}>{product.name}</span>;
 
   return (
     <tr>
